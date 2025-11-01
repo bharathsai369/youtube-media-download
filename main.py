@@ -5,7 +5,7 @@ def check_ffmpeg():
     try:
         subprocess.run(["ffmpeg", "-version"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
         print("✅ FFmpeg is already installed.")
-    except subprocess.CalledProcessError:
+    except (subprocess.CalledProcessError, FileNotFoundError):
         print("⚙️ Installing FFmpeg via winget...")
         subprocess.run(["winget", "install", "--id", "Gyan.FFmpeg", "-e", "--source", "winget"], check=True)
 
